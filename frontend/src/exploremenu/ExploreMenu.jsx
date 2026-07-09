@@ -4,7 +4,7 @@ import { menu_list } from "../assets/assets";
 const ExploreMenu = ({ category, setCategory }) => {
   return (
     <>
-      <div className="exploremenu">
+      <div className="exploremenu" id="exploremenu">
         <h2>Explore Our Menu</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
@@ -15,6 +15,7 @@ const ExploreMenu = ({ category, setCategory }) => {
           {menu_list.map((e) => {
             return (
               <li
+              key={e.menu_name}
                 onClick={() =>
                   setCategory((prev) =>
                     prev === e.menu_name ? "All" : e.menu_name,

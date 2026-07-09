@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import Navbar from "../../components/navbar/Navbar.jsx";
 import Header from "../../header/Header.jsx";
 import ExploreMenu from "../../exploremenu/ExploreMenu.jsx";
-import FoodDisplay from "../../components/fooddisplay/FoodDisplay.jsx";
+import FoodDisplay from "../../components/FoodDisplay/FoodDisplay.jsx";
+import AppDownload from "../../components/AppDownload/AppDownload.jsx";
 const Home = () => {
   const [category, setCategory] = useState("All");
   return (
     <>
-      <Navbar />
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category}/>
+      <AppDownload/>
     </>
   );
 };

@@ -1,0 +1,9 @@
+.footer {
+  background: #323232;
+  color: #fff;
+  margin-top: 60px;
+  .footer-content{
+    width: 80%;
+    margin: auto;
+  }
+}
