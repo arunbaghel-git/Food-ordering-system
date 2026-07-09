@@ -19,10 +19,23 @@ const StoreContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
-  //
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
+  // Calculate total price of all items currently present in cart
+  const getCartTotal = () => {
+    let cartTotal = 0;
+    // Loop through all food items and check whether they exist in cart
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        // Find complete product details using item id
+        let itemInfo = food_list.find((product) => product._id === item);
+        // Add (price × quantity) to cart total
+        if (itemInfo) {
+          cartTotal += itemInfo.price * cartItems[item];
+        }
+      }
+      
+    }
+    return cartTotal;
+  };
   // Values and functions exposed globally through Context API.
   const contextValue = {
     food_list,
@@ -30,6 +43,7 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
+    getCartTotal
   };
   return (
     <StoreContext.Provider value={contextValue}>

@@ -4,14 +4,23 @@
   align-items: center;
   ul {
     display: flex;
-    gap:20px
+    gap: 20px;
   }
-  .navbar-right{
+  .navbar-right {
     display: flex;
-    gap:10px;
+    gap: 10px;
+    .navbar-cart-icon{
+    position: relative;
+    .dot {
+      background: red;
+      width: 5px;
+      height: 5px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }}
   }
 }
 .navbar .active {
   background-color: red;
 }
-

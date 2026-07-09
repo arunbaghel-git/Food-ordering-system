@@ -1,0 +1,15 @@
+.cart{
+margin-top: 30px;
+
+.cart-items-title{
+    display: flex;
+    justify-content: space-between;
+}
+.cart-items-item{
+    height: 65px;
+    margin-bottom: 15px;
+    .cross{
+        cursor: pointer;
+    }
+}
+}
