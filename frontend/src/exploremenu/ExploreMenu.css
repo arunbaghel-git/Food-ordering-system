@@ -1,0 +1,14 @@
+.exploremenu {
+  .exploremenu-list {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+   li .active{
+      background-color: red;
+    }
+  }
+}
+
+hr{
+  margin-bottom: 30px;
+}
