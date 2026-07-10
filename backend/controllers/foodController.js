@@ -64,7 +64,7 @@ const getAllFoodItems = async (req, res, next) => {
     }
     res.json({
       success: true,
-      food_list,
+      data:food_list,
     });
   } catch (error) {
     next(error);

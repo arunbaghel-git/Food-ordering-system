@@ -8,6 +8,7 @@
 }
 body {
   min-height: 100vh;
+  background-color: #fcfcfc;
 }
 ul{
   li{
@@ -24,8 +25,3 @@ hr{
     height: 1px;
     background-color: #a9a9a9;
 }
-.app {
-  width: 80%;
-  margin: auto;
-}
-

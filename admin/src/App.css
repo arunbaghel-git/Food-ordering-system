@@ -1,0 +1,7 @@
+.app-component{
+    display: flex;
+    gap: 20px;
+    .right-content{
+        width: 70%;
+    }
+}
