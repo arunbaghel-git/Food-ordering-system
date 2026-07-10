@@ -9,10 +9,9 @@ const addFoodItem = async (req, res, next) => {
     const { name, description, price, category } = req.body;
     // Validate required fields before saving data
     if (!name || !description || !price || !req.file || !category) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required",
-      });
+      const error = new Error("All fields are required");
+      error.statusCode = 400;
+      throw error;
     }
     const foodData = {
       name,
@@ -30,7 +29,7 @@ const addFoodItem = async (req, res, next) => {
       food,
     });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
@@ -40,10 +39,9 @@ const removeFoodItem = async (req, res, next) => {
     // Find food item before deleting, because we need image filename for removing image file
     const food = await foodModel.findById(id);
     if (!food) {
-      return res.status(404).json({
-        success: false,
-        message: "Food item not found",
-      });
+      const error = new Error("Food item not found");
+      error.statusCode = 404;
+      throw error;
     }
     // Delete associated image from uploads folder
     fs.unlink(`uploads/${food.image}`, () => {});
@@ -59,6 +57,11 @@ const removeFoodItem = async (req, res, next) => {
 const getAllFoodItems = async (req, res, next) => {
   try {
     const food_list = await foodModel.find({});
+    if(food_list.length === 0){
+        const error = new Error("Food items list not found")
+        error.statusCode = 404;
+        throw error;
+    }
     res.json({
       success: true,
       food_list,
