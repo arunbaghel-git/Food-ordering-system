@@ -3,8 +3,9 @@ import "./Add.css";
 import { assets } from "../../assets/assets.js";
 import { toast } from "react-toastify";
 import axios from "axios";
-const Add = () => {
-  const url = "http://localhost:3030";
+const Add = ({url}) => {
+ 
+ 
   // Stores selected image file and form input values
   const [image, setImage] = useState(false);
   const [foodItem, setFoodItem] = useState({
@@ -13,8 +14,8 @@ const Add = () => {
     price: "",
     category: "Salad",
   });
+ 
   // Updates corresponding form field whenever user types or selects a value
-
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;

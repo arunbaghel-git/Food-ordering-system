@@ -3,9 +3,9 @@ import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const List = () => {
+const List = ({url}) => {
   const [list, setList] = useState([]);
-  const url = "http://localhost:3030";
+  
   const fetchList = async () => {
     try {
       const response = await axios.get(`${url}/api/food/list`);
@@ -18,9 +18,23 @@ const List = () => {
       toast.error("Server network error");
     }
   };
+  const removeFood = async (foodId) => {
+    try {
+      const response =await axios.delete(`${url}/api/food/remove`, {
+        data: { id: foodId },
+      });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        fetchList();
+      } else {
+         toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Server network error");
+    }
+  };
   useEffect(() => {
     fetchList();
-    console.log(list);
   }, []);
 
   return (
@@ -35,19 +49,20 @@ const List = () => {
         </div>
         <br />
         <hr />
-       
-          {list.map((elem, index) => {
-            return (
-              <div key={index} className="list-item">
-                <img src={`${url}/images/${elem.image}`} alt="" />
-                <p>{elem.name}</p>
-                <p>{elem.price}</p>
-                <p>{elem.category}</p>
-                <p>X</p>
-              </div>
-            );
-          })}
-        
+
+        {list.map((elem, index) => {
+          return (
+            <div key={index} className="list-item">
+              <img src={`${url}/images/${elem.image}`} alt="" />
+              <p>{elem.name}</p>
+              <p>{elem.price}</p>
+              <p>{elem.category}</p>
+              <p onClick={() => removeFood(elem._id)} className="cross">
+                X
+              </p>
+            </div>
+          );
+        })}
       </div>
     </>
   );

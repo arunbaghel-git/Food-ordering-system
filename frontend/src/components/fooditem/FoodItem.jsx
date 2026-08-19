@@ -4,12 +4,12 @@ import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ id, name, price, description, image }) => {
   // Getting cart state and cart update functions from Context API, to manage add/remove quantity directly from each food card.
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart , url} = useContext(StoreContext);
   return (
     <>
       <div className="food-item">
         <div className="food-item-img-container">
-          <img src={image} alt="" />
+          <img src={url+"/images"+image} alt="" />
           {
             /*If item is not in cart:
             show add btn.
